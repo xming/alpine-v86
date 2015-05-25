@@ -1,0 +1,41 @@
+<!doctype html>
+<title>Instant on</title>
+
+<script src="./build/v86_all.js"></script>
+
+<link rel="stylesheet" href="./v86.css">
+
+<script>
+"use strict";
+
+window.onload = function()
+{
+    var emulator = new V86Starter({
+        memory_size: 24 * 1024 * 1024,
+        vga_memory_size: 1 * 1024 * 1024,
+        screen_container: document.getElementById("screen_container"),
+        bios: {
+            url: "./bios/seabios.bin",
+        },
+        vga_bios: {
+            url: "./bios/vgabios.bin",
+        },
+        hda: {
+            url: "./images/alpine-v86.img",
+        },
+	initial_state: {
+	    url: "./images/alpine-v86-1MB-24MB.bin",
+	},
+	disable_mouse: true,
+        autostart: true,
+	network_relay_url: "ws://relay.widgetry.org/",
+	//boot_order: 213,
+    });
+};
+</script>
+
+<div id="screen_container">
+    <div id="screen"></div>
+    <canvas id="vga"></canvas>
+</div>
+
